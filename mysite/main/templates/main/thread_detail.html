@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thread Detail</title>
+    <style>
+        /* Basic CSS styles (same as forum.html) */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Thread detail specific styles */
+        .post-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .post-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        .post-item strong {
+            color: #333;
+        }
+
+        .post-content {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Thread Detail</h1>
+    </header>
+
+    <main>
+        <h2>{{ thread.title }}</h2>
+        <ul class="post-list">
+            {% for post in posts %}
+                <li class="post-item">
+                    <strong>{{ post.created_by.username }}</strong> - {{ post.created_at }}<br>
+                    <div class="post-content">{{ post.content }}</div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Post Reply</button>
+        </form>
+    </main>
+
+</body>
+</html>
